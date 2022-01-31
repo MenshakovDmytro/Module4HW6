@@ -24,20 +24,21 @@ namespace Module4HW6
 
         public async Task FirstQuery()
         {
-            var firstQuery = await _context.Artists
-                    .Include(i => i.Songs)
-                    .ThenInclude(i => i.Genre)
+            var firstQuery = await _context.Songs
+                    .Include(i => i.Genre)
+                    .Include(i => i.Artists)
+                    .Where(w => w.Genre != null)
                     .ToListAsync();
 
             Console.WriteLine("First query result");
 
-            foreach (var artist in firstQuery)
+            foreach (var song in firstQuery)
             {
-                Console.WriteLine($"Artist: {artist.Name}");
+                Console.WriteLine($"Song: {song.Title} Genre: {song.Genre.Title}");
 
-                foreach (var song in artist.Songs)
+                foreach (var artist in song.Artists)
                 {
-                    Console.WriteLine($"Song: {song.Title} Genre: {song.Genre.Title}");
+                    Console.WriteLine($"Artist: {artist.Name}");
                 }
             }
         }
