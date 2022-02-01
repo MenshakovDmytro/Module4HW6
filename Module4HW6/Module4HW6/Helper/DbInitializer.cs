@@ -29,11 +29,7 @@ namespace Module4HW6.Helper
             {
                 if (!_context.Songs.Any())
                 {
-                    await _context.Artists.AddAsync(_artists["Eminem"]);
-                    await _context.Artists.AddAsync(_artists["Kavinsky"]);
-                    await _context.Artists.AddAsync(_artists["Netsky"]);
-                    await _context.Artists.AddAsync(_artists["Logic"]);
-                    await _context.Artists.AddAsync(_artists["MØ"]);
+                    await _context.AddRangeAsync(_artists.Values);
                     await _context.SaveChangesAsync();
                 }
             });
@@ -61,11 +57,7 @@ namespace Module4HW6.Helper
             {
                 if (!_context.Songs.Any())
                 {
-                    await _context.Songs.AddAsync(_songs["Homicide"]);
-                    await _context.Songs.AddAsync(_songs["Love The Way You Lie"]);
-                    await _context.Songs.AddAsync(_songs["Secret Agent"]);
-                    await _context.Songs.AddAsync(_songs["Slow Love"]);
-                    await _context.Songs.AddAsync(_songs["Nightcall"]);
+                    await _context.AddRangeAsync(_songs.Values);
                     await _context.SaveChangesAsync();
                 }
             });
